@@ -1,12 +1,5 @@
 import './index.css'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts'
+import {BarChart, Bar, XAxis, YAxis, Legend} from 'recharts'
 
 const VaccinationCoverage = props => {
   const {vaccinationCoverageData} = props
@@ -21,36 +14,37 @@ const VaccinationCoverage = props => {
   return (
     <div className="rechart-container">
       <h1 className="rechart-heading">Vaccination Coverage</h1>
-      <ResponsiveContainer width="100%" height={500}>
-        <BarChart
-          data={vaccinationCoverageData}
-          margin={{
-            top: 5,
+
+      <BarChart
+        width={1000}
+        height={300}
+        data={vaccinationCoverageData}
+        margin={{
+          top: 5,
+        }}
+      >
+        <XAxis
+          dataKey="group_name"
+          tick={{
+            stroke: 'gray',
+            strokeWidth: 1,
           }}
-        >
-          <XAxis
-            dataKey="group_name"
-            tick={{
-              stroke: 'gray',
-              strokeWidth: 1,
-            }}
-          />
-          <YAxis
-            tickFormatter={DataFormatter}
-            tick={{
-              stroke: 'gray',
-              strokeWidth: 0,
-            }}
-          />
-          <Legend
-            wrapperStyle={{
-              padding: 30,
-            }}
-          />
-          <Bar dataKey="dose1" name="Boys" fill="#1f77b4" barSize="20%" />
-          <Bar dataKey="dose2" name="Girls" fill="#fd7f0e" barSize="20%" />
-        </BarChart>
-      </ResponsiveContainer>
+        />
+        <YAxis
+          tickFormatter={DataFormatter}
+          tick={{
+            stroke: 'gray',
+            strokeWidth: 0,
+          }}
+        />
+        <Legend
+          wrapperStyle={{
+            padding: 30,
+          }}
+        />
+        <Bar dataKey="dose1" name="Boys" fill="#1f77b4" barSize="20%" />
+        <Bar dataKey="dose2" name="Girls" fill="#fd7f0e" barSize="20%" />
+      </BarChart>
     </div>
   )
 }
